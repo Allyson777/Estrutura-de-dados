@@ -122,38 +122,40 @@ No *insereOrdenada(No *L, int ch)
     return L;
 }
 
-No *intercala(No *L1, No *L2)
-{
-    No *L3 = NULL;
-    No *aux = NULL;
-    if (L1 == NULL)
-    {
-        return L2;
-    }
-    if (L2 == NULL)
-    {
-        return L1;
-    }
+// incompleta
 
-    if (L1->chave <= L2->chave)
-    {
-        L3 = L1;
-        L1 = L1->prox;
-    }
-    else
-    {
-        L3 = L2;
-        L2 = L2->prox;
-    }
+// No *intercala(No *L1, No *L2)
+// {
+//     No *L3 = NULL;
+//     No *aux = NULL;
+//     if (L1 == NULL)
+//     {
+//         return L2;
+//     }
+//     if (L2 == NULL)
+//     {
+//         return L1;
+//     }
 
-    aux = L3;
+//     if (L1->chave <= L2->chave)
+//     {
+//         L3 = L1;
+//         L1 = L1->prox;
+//     }
+//     else
+//     {
+//         L3 = L2;
+//         L2 = L2->prox;
+//     }
 
-    while (L1 != NULL && L2 != NULL)
-    {
-        if (L1->chave)
-            ;
-    }
-}
+//     aux = L3;
+
+//     while (L1 != NULL && L2 != NULL)
+//     {
+//         if (L1->chave)
+//             ;
+//     }
+// }
 
 int main()
 {
