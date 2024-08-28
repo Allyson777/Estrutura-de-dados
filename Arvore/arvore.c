@@ -1,6 +1,5 @@
 #include "arvore.h"
 
-
 No *criaNo(int ch){
     No *novo = (No*)calloc(1,sizeof(No));
 
@@ -22,7 +21,6 @@ No *busca(No *T,int ch, No **pred){
         if(ch < aux->chave){
             *pred =aux;
             aux = aux->esq;
-             
         }
         if(ch > aux->chave){
             *pred =aux;
@@ -95,19 +93,16 @@ No *remover(No *T, int ch){
             
             free(suc);
             return T;
-
         }    
         else{
-            printf("\nEntrou3\n");
             if(aux == pred->dir){ // filho a direita
-            printf("\nEntrou3\n");
                 if(aux->esq == NULL){
                     pred->dir = aux->dir;
                 }if(aux->dir == NULL){
                     pred->dir = aux->esq;
                 }
             }if(aux == pred->esq){  //filho a esquerda
-            printf("\nEntrou32\n");
+            
                 if(aux->esq == NULL){
                     pred->esq = aux->dir;
                 }if(aux->dir == NULL){
@@ -136,7 +131,7 @@ No *sucessor(No *x, No **paisuc){
         suc = suc->esq;
     }
     printf("\n");
-    printf(suc);
+    printf("%d", suc);
     printf("\n");
     return suc;
 
