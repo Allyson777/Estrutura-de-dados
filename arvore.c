@@ -80,7 +80,7 @@ No *busca(No *T, int ch, No **pred)
 No *remover(No *T, int ch)
 {
     No *paisuc = NULL, *suc = NULL, *pred = NULL;
-    No *aux = busca(T, ch, &pred);
+    No *aux = busca(T, ch, &pred); // Busca o nó a ser removido e atualiza o predecessor (pred)
 
     if (aux == NULL)
     {
@@ -88,14 +88,16 @@ No *remover(No *T, int ch)
     }
     else
     {
+        // Caso 1: Nó a ser removido é uma folha (sem filhos)
         if (aux->esq == NULL && aux->dir == NULL)
         { // se é folha
-            printf("\nEntrou1\n");
             if (pred == NULL)
-            { // se é raiz
+            {
+                // Se o nó a ser removido é a raiz da árvore
                 free(aux);
                 return NULL;
             }
+            // Verifica se o nó a ser removido é o filho esquerdo ou direito do predecessor
             if (pred->esq == aux)
             { // filho a esquerda
                 pred->esq = NULL;
@@ -109,9 +111,14 @@ No *remover(No *T, int ch)
         }
         else if (aux->esq != NULL && aux->dir != NULL)
         {
-            printf("\nEntrou2\n");
+            // Encontra o sucessor do nó (menor valor da subárvore direita)
             suc = sucessor(aux, &paisuc);
+
+            // Substitui o valor da chave do nó a ser removido pelo valor do sucessor
             aux->chave = suc->chave;
+
+            // Remove o sucessor da árvore
+
             if (paisuc->dir == suc)
             { // sucessor é filho direita
                 paisuc->dir = suc->dir;
@@ -124,12 +131,14 @@ No *remover(No *T, int ch)
             free(suc);
             return T;
         }
+        // Caso 3: Nó a ser removido tem apenas um filho (esquerda ou direita)
         else
         {
-            printf("\nEntrou3\n");
+
+            // Se o nó a ser removido é o filho direito do predecessor
             if (aux == pred->dir)
-            { // filho a direita
-                printf("\nEntrou3\n");
+            {
+                // Substitui o nó removido pelo seu filho (se for filho à direita ou esquerda)
                 if (aux->esq == NULL)
                 {
                     pred->dir = aux->dir;
@@ -139,9 +148,10 @@ No *remover(No *T, int ch)
                     pred->dir = aux->esq;
                 }
             }
+            // Se o nó a ser removido é o filho esquerdo do predecessor
             if (aux == pred->esq)
             { // filho a esquerda
-                printf("\nEntrou32\n");
+              // Substitui o nó removido pelo seu filho (se for filho à direita ou esquerda)
                 if (aux->esq == NULL)
                 {
                     pred->esq = aux->dir;
@@ -158,16 +168,18 @@ No *remover(No *T, int ch)
         printf("\nsaiu\n");
     }
 }
-
+// Função para encontrar o sucessor do um nó
 No *sucessor(No *x, No **paisuc)
 {
-    printf("\nentrou1\n");
-    No *suc = x->dir;
-    *paisuc = x;
+    No *suc = x->dir; // O sucessor começa sendo o filho à direita
+    *paisuc = x;      // Atualiza o nó pai do sucessor como sendo o nó atual
+
+    // Se não há filho à direita, não existe sucessor
     if (suc == NULL)
     {
         return suc;
     }
+    // Procura o menor nó da subárvore direita (à esquerda do filho direito)
     while (suc->esq != NULL)
     {
         *paisuc = suc;
