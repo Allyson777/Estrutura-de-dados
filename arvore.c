@@ -194,10 +194,10 @@ void imprime(No *T, int nivel)
     if (T)
     {
         int i;
-        imprime(T->dir, nivel + 1);
-        for (i = 0; i < nivel; i++)
+        imprime(T->dir, nivel + 1); // Primeiro, imprime a subárvore direita
+        for (i = 0; i < nivel; i++) // Depois, imprime espaços em branco
             printf("\t");
-        printf("%d\n", T->chave);
-        imprime(T->esq, nivel + 1);
+        printf("%d\n", T->chave);   // Imprime a chave do nó atual
+        imprime(T->esq, nivel + 1); // imprime a subárvore esquerda
     }
 }
